@@ -19,7 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         if (intent != null){
             startActivity(intent);
         } else {
-            Log.d(activityName, "Intent was recorded to be null");
+            Log.e(activityName, "Intent was recorded to be null");
         }
     }
 
