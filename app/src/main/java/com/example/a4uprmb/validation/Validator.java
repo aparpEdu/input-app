@@ -7,13 +7,13 @@ import android.widget.Button;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class Validator implements TextWatcher {
-    private final ValidationHelper validationHelper;
-    private final TextInputLayout textInputLayout;
+    private final ValidationStrategy validationStrategy;
+    private final TextInputLayout[] textInputLayout;
     private final Button button;
 
-    public Validator(TextInputLayout textInputLayout, Button button) {
+    public Validator(ValidationStrategy validationStrategy, Button button, TextInputLayout... textInputLayout) {
+        this.validationStrategy = validationStrategy;
         this.button = button;
-        this.validationHelper = new ValidationHelper();
         this.textInputLayout = textInputLayout;
     }
 
@@ -24,18 +24,11 @@ public class Validator implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+        validationStrategy.isValid(button, textInputLayout);
     }
 
     @Override
     public void afterTextChanged(Editable editable) {
-        String email = textInputLayout.getEditText().getText().toString();
-        if (!validationHelper.isEmailValid(email)){
-            textInputLayout.setError("Please input valid email");
-            button.setEnabled(false);
-        } else {
-            button.setEnabled(true);
-            textInputLayout.setError(null);
-        }
+
     }
 }

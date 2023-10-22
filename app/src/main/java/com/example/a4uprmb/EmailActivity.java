@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.a4uprmb.validation.EmailValidation;
 import com.example.a4uprmb.validation.Validator;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -20,7 +21,7 @@ public class EmailActivity extends BaseActivity {
         editText = findViewById(R.id.email);
         textInputLayout = findViewById(R.id.textInputLayout);
         button = findViewById(R.id.submit);
-        Validator validator = new Validator(textInputLayout, button);
+        Validator validator = new Validator(new EmailValidation(), button, textInputLayout);
         editText.addTextChangedListener(validator);
         button.setOnClickListener(view -> {
             setIntent(createIntent());
@@ -30,6 +31,6 @@ public class EmailActivity extends BaseActivity {
 
     @Override
     public Intent createIntent() {
-        return new Intent(getApplicationContext(), PeopleActivity.class);
+        return new Intent(getApplicationContext(), PeopleActivity.class).putExtra("email", editText.getText().toString());
     }
 }

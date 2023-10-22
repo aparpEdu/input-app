@@ -56,7 +56,7 @@
             android:autofillHints="postalAddress"
             android:fontFamily="@font/gilroy"
             android:inputType="textPostalAddress"
-            android:text="@string/address"
+            android:hint="@string/address"
             android:textColor="@color/white" />
 
     </com.google.android.material.textfield.TextInputLayout>

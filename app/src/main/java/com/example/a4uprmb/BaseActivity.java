@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     private Intent intent;
-    private String activityName;
+    private final String activityName;
 
     public BaseActivity(){
         activityName = this.getClass().getSimpleName();
@@ -28,10 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         this.intent = intent;
     }
 
-    @Override
-    public Intent getIntent() {
-        return intent;
-    }
+
 
     public abstract Intent createIntent();
 }
